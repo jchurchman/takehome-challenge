@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Input } from 'antd';
+import { useEffect, useReducer, useRef } from 'react';
 import * as CONSTANTS from '../../constants';
 
 const config = [{
@@ -34,9 +35,45 @@ const RowValue = styled.span`
   grid-column: 2 / span 1;
 `;
 
+const createInitialState = allTheState => {
+  return config.reduce((acc, { name }) => ({ ...acc, [name]: allTheState[name]}), {})
+}
 
+const Branding = ({ editing, onEdit, editState, ...otherProps }) => {
+  const reducer = (state, action) => {
+    console.log('action ', action);
+    if (state[action.name]) {
+      return {
+        ...state,
+        [action.name]: action.value,
+      }
+    }
+    if (action.name === 'reset') {
+      return createInitialState(otherProps);
+    }
+    return state;
+  }
+  const [state, dispatch] = useReducer(reducer, otherProps, createInitialState)
+  const handleEdit = e => {
+    const { name, value } = e.target;
+    const newState = {
+      ...state,
+      [name]: value,
+    };
+    dispatch({ name, value })
+    onEdit(newState)
+  }
 
-const Branding = ({ editing, ...otherProps }) => {
+  const { current: wasEditing } = useRef(editing);
+  useEffect(() => {
+    if (
+      editing ^ wasEditing
+      && !editState
+    ) {
+      dispatch({ name: 'reset' })
+    }
+  }, [editing, wasEditing, editState]);
+  
   return config.map(({ name, displayText, width }) => (
     <BrandingRow key={name}>
       <RowName>
@@ -48,7 +85,10 @@ const Branding = ({ editing, ...otherProps }) => {
             ? (
               <StyledInput
                 width={width}
-                value={otherProps[name]}
+                defaultValue={otherProps[name]}
+                value={state[name]}
+                name={name}
+                onChange={handleEdit}
               />
             )
             : otherProps[name]

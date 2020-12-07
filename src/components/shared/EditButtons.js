@@ -15,7 +15,7 @@ const StyledButton = styled(Button)`
 `;
 
 
-const EditButtons = ({ editing, onEdit, onCancel, onSave }) => editing
+const EditButtons = ({ editing, onEdit, onCancel, onSave, saveDisabled }) => editing
   ? (
     <ButtonContainer>
       <StyledButton onClick={onCancel}>
@@ -24,6 +24,7 @@ const EditButtons = ({ editing, onEdit, onCancel, onSave }) => editing
       <StyledButton
         type="primary"
         onClick={onSave}
+        disabled={saveDisabled}
       >
         Save
       </StyledButton>

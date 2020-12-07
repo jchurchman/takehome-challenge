@@ -21,15 +21,16 @@ const ChildContainer = styled.div`
   margin: 32px 16px;
 `;
 
-const EditorContainer = ({ heading, subhead, renderChildren, onSave, onCancel }) => {
+const EditorContainer = ({ heading, subhead, renderChildren, onSave }) => {
   const [editing, setEditing] = useState(false);
+  const [editState, setEditState] = useState(null);
 
   const handleOnSave = () => {
-    onSave();
+    onSave(editState);
     setEditing(false);
   }
   const handleOnCancel = () => {
-    onCancel();
+    setEditState(null);
     setEditing(false);
   }
 
@@ -41,6 +42,7 @@ const EditorContainer = ({ heading, subhead, renderChildren, onSave, onCancel })
         </h2>
         <EditButtons
           editing={editing}
+          saveDisabled={!editState}
           onEdit={() => setEditing(true)}
           onSave={handleOnSave}
           onCancel={handleOnCancel}
@@ -50,7 +52,7 @@ const EditorContainer = ({ heading, subhead, renderChildren, onSave, onCancel })
         {subhead}
       </Subhead>
       <ChildContainer>
-        {renderChildren({ editing })}
+        {renderChildren({ editing, onEdit: arg => setEditState(arg), editState })}
       </ChildContainer>
     </div>
   )

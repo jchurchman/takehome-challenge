@@ -40,7 +40,3 @@ export const initialState = {
     end: '5:00 PM',
   },
 }
-
-export const reducer = (state, action) => {
-  return state;
-}
