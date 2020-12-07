@@ -7,22 +7,32 @@ const ButtonContainer = styled.div`
   flex-direction: row;
 `;
 
+const StyledButton = styled(Button)`
+  height: 32px;
+  width: 64px;
+  margin: 0 8px;
+  ${({ type }) => (type && type === 'primary' && 'background-color: cornflowerblue; color: white;')}
+`;
+
 
 const EditButtons = ({ editing, onEdit, onCancel, onSave }) => editing
   ? (
-    <Button onClick={onEdit}>
-      Edit
-    </Button>
+    <ButtonContainer>
+      <StyledButton onClick={onCancel}>
+        Cancel
+      </StyledButton>
+      <StyledButton
+        type="primary"
+        onClick={onSave}
+      >
+        Save
+      </StyledButton>
+    </ButtonContainer>
   )
   : (
-    <ButtonContainer>
-      <Button onClick={onCancel}>
-        Cancel
-      </Button>
-      <Button onClick={onSave}>
-        Save
-      </Button>
-    </ButtonContainer>
+    <StyledButton onClick={onEdit}>
+      Edit
+    </StyledButton>
   )
 
   export default EditButtons;

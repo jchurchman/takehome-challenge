@@ -6,8 +6,20 @@ const HeadingContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: end;
+  margin: 16px;
+  h2 {
+    margin: 0;
+  }
 `;
 
+const Subhead = styled.span`
+  margin: 16px;
+`;
+
+const ChildContainer = styled.div`
+  margin: 32px 16px;
+`;
 
 const EditorContainer = ({ heading, subhead, renderChildren, onSave, onCancel }) => {
   const [editing, setEditing] = useState(false);
@@ -24,9 +36,9 @@ const EditorContainer = ({ heading, subhead, renderChildren, onSave, onCancel })
   return (
     <div>
       <HeadingContainer>
-        <h3>
+        <h2>
           {heading}
-        </h3>
+        </h2>
         <EditButtons
           editing={editing}
           onEdit={() => setEditing(true)}
@@ -34,10 +46,12 @@ const EditorContainer = ({ heading, subhead, renderChildren, onSave, onCancel })
           onCancel={handleOnCancel}
         />
       </HeadingContainer>
-      <h5>
+      <Subhead>
         {subhead}
-      </h5>
-      {renderChildren({ editing })}
+      </Subhead>
+      <ChildContainer>
+        {renderChildren({ editing })}
+      </ChildContainer>
     </div>
   )
 }
