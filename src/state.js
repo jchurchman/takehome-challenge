@@ -1,42 +1,42 @@
-import * as CONSTANTS from './constants';
+import { BRANDING, DAYS } from './constants';
 
 export const initialState = {
-  [CONSTANTS.FULL_NAME]: 'Bright.md Hospital',
-  [CONSTANTS.SHORT_NAME]: 'BMD',
-  [CONSTANTS.WELCOME_TEXT]: 'Get a quick diagnosis for many medication conditions from your computer or mobile device.',
-  [CONSTANTS.SUNDAY]: {
+  [BRANDING.FULL_NAME]: 'Bright.md Hospital',
+  [BRANDING.SHORT_NAME]: 'BMD',
+  [BRANDING.WELCOME_TEXT]: 'Get a quick diagnosis for many medication conditions from your computer or mobile device.',
+  [DAYS.SUNDAY]: {
     open: false,
-    start: '9:00 AM',
-    end: '5:00 PM',
+    start: 10,
+    end: 18,
   },
-  [CONSTANTS.MONDAY]: {
+  [DAYS.MONDAY]: {
     open: true,
-    start: '9:00 AM',
-    end: '5:00 PM',
+    start: 10,
+    end: 18,
   },
-  [CONSTANTS.TUESDAY]: {
+  [DAYS.TUESDAY]: {
     open: true,
-    start: '9:00 AM',
-    end: '5:00 PM',
+    start: 10,
+    end: 18,
   },
-  [CONSTANTS.WEDNESDAY]: {
+  [DAYS.WEDNESDAY]: {
     open: true,
-    start: '9:00 AM',
-    end: '5:00 PM',
+    start: 10,
+    end: 18,
   },
-  [CONSTANTS.THURSDAY]: {
+  [DAYS.THURSDAY]: {
     open: true,
-    start: '9:00 AM',
-    end: '5:00 PM',
+    start: 10,
+    end: 18,
   },
-  [CONSTANTS.FRIDAY]: {
+  [DAYS.FRIDAY]: {
     open: true,
-    start: '9:00 AM',
-    end: '5:00 PM',
+    start: 10,
+    end: 18,
   },
-  [CONSTANTS.SATURDAY]: {
+  [DAYS.SATURDAY]: {
     open: false,
-    start: '9:00 AM',
-    end: '5:00 PM',
+    start: 10,
+    end: 18,
   },
 }
